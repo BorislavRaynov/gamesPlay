@@ -1,0 +1,48 @@
+{% load static %}
+{% load search_profile %}
+{% found_user as profile %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+    <title>GamesPlay</title>
+</head>
+
+<body>
+<div id="box">
+    <header>
+
+        <!-- Navigation Bar -->
+        <h1><a class="home" href="{% url 'home-page' %}">GamesPlay</a></h1>
+        <nav>
+
+            <!-- if the user has not created a profile -->
+            {% if not profile %}
+                <a href="{% url 'create-profile' %}">Create Profile</a>
+
+            <!-- if the user has created a profile -->
+            {% else %}
+            <a href="{% url 'dashboard' %}">Dashboard</a>
+            <a href="{% url 'create-game' %}">Create Game</a>
+            <a href="{% url 'details-profile' %}">Profile</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    {% block page_content %}
+    
+    {% endblock %}
+
+    <!-- footer -->
+    <footer>
+        &copy;Borislav Raynov 2023. All rights reserved.
+    </footer>
+
+</div>
+</body>
+</html>
